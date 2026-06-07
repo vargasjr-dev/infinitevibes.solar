@@ -35,7 +35,7 @@ const DENSITY_TABLE_SOLAR_MAX = [
 
 function interpolateDensity(
   altitude: number,
-  table: { alt: number; rho: number }[]
+  table: { alt: number; rho: number }[],
 ): number {
   if (altitude <= table[0].alt) return table[0].rho;
   if (altitude >= table[table.length - 1].alt)
@@ -322,9 +322,7 @@ export default function ThermalSimulation() {
                   className="absolute top-0 left-0 h-full rounded-full transition-all duration-300"
                   style={{
                     width: `${Math.min((result.tEqC / m.maxTemp) * 100, 100)}%`,
-                    backgroundColor: m.survives
-                      ? `${m.color}40`
-                      : "#ef444480",
+                    backgroundColor: m.survives ? `${m.color}40` : "#ef444480",
                   }}
                 />
                 {/* Limit marker */}

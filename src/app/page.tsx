@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Nav from "@/components/Nav";
+import SubscribeForm from "@/components/SubscribeForm";
 
 function SolarIcon({ className }: { className?: string }) {
   return (
@@ -16,326 +17,433 @@ function SolarIcon({ className }: { className?: string }) {
   );
 }
 
-function Stat({ value, label }: { value: string; label: string }) {
+function MissionDiagram() {
   return (
-    <div className="text-center">
-      <div className="text-3xl md:text-4xl font-bold text-solar">{value}</div>
-      <div className="text-sm text-muted mt-1">{label}</div>
-    </div>
-  );
-}
+    <div className="w-full overflow-x-auto">
+      <svg
+        viewBox="0 0 840 230"
+        xmlns="http://www.w3.org/2000/svg"
+        className="w-full max-w-3xl mx-auto min-w-[560px]"
+        aria-label="Three-step mission diagram: Orbital Ring, Dyson Sphere, Relay to Earth"
+      >
+        <defs>
+          <marker
+            id="arrowhead"
+            markerWidth="8"
+            markerHeight="6"
+            refX="7"
+            refY="3"
+            orient="auto"
+          >
+            <polygon points="0 0, 8 3, 0 6" fill="#2a2a2a" />
+          </marker>
+          <radialGradient id="earthGrad" cx="40%" cy="35%" r="60%">
+            <stop offset="0%" stopColor="#3b82f6" />
+            <stop offset="100%" stopColor="#1e3a8a" />
+          </radialGradient>
+          <radialGradient id="sunGrad" cx="38%" cy="32%" r="65%">
+            <stop offset="0%" stopColor="#fde68a" />
+            <stop offset="60%" stopColor="#f59e0b" />
+            <stop offset="100%" stopColor="#d97706" />
+          </radialGradient>
+        </defs>
 
-function PhaseCard({
-  phase,
-  title,
-  description,
-  cost,
-}: {
-  phase: string;
-  title: string;
-  description: string;
-  cost: string;
-}) {
-  return (
-    <div className="bg-surface border border-border rounded-xl p-6 hover:border-solar/30 transition-colors">
-      <div className="text-solar font-mono text-sm mb-2">{phase}</div>
-      <h3 className="text-xl font-bold mb-3">{title}</h3>
-      <p className="text-muted text-sm leading-relaxed mb-4">{description}</p>
-      <div className="text-solar-dim font-mono text-sm">{cost}</div>
+        {/* ── Stars ── */}
+        <circle cx="38" cy="22" r="1" fill="white" opacity="0.45" />
+        <circle cx="82" cy="52" r="1.2" fill="white" opacity="0.5" />
+        <circle cx="168" cy="16" r="0.9" fill="white" opacity="0.4" />
+        <circle cx="248" cy="38" r="1.1" fill="white" opacity="0.35" />
+        <circle cx="305" cy="18" r="1" fill="white" opacity="0.5" />
+        <circle cx="370" cy="44" r="0.8" fill="white" opacity="0.4" />
+        <circle cx="455" cy="24" r="1.2" fill="white" opacity="0.45" />
+        <circle cx="530" cy="50" r="1" fill="white" opacity="0.4" />
+        <circle cx="598" cy="28" r="0.9" fill="white" opacity="0.5" />
+        <circle cx="662" cy="46" r="1.1" fill="white" opacity="0.35" />
+        <circle cx="748" cy="19" r="1" fill="white" opacity="0.45" />
+        <circle cx="808" cy="42" r="1.2" fill="white" opacity="0.5" />
+        <circle cx="105" cy="195" r="1" fill="white" opacity="0.3" />
+        <circle cx="448" cy="205" r="0.9" fill="white" opacity="0.35" />
+        <circle cx="722" cy="198" r="1.1" fill="white" opacity="0.3" />
+
+        {/* ══════════════════════════════════════════
+            PANEL 1 — ORBITAL RING  (cx=140, cy=108)
+        ══════════════════════════════════════════ */}
+
+        {/* Back half of ring (behind Earth) */}
+        <path
+          d="M 78,108 A 62,18 0 0,0 202,108"
+          fill="none"
+          stroke="#f59e0b"
+          strokeWidth="2"
+          opacity="0.28"
+          strokeDasharray="5 3"
+        />
+
+        {/* Earth */}
+        <circle cx="140" cy="108" r="36" fill="url(#earthGrad)" />
+        {/* Subtle continent-like highlight */}
+        <ellipse
+          cx="128"
+          cy="100"
+          rx="10"
+          ry="7"
+          fill="#60a5fa"
+          opacity="0.25"
+        />
+        <ellipse cx="152" cy="118" rx="8" ry="5" fill="#60a5fa" opacity="0.2" />
+
+        {/* Front half of ring (in front of Earth) */}
+        <path
+          d="M 78,108 A 62,18 0 0,1 202,108"
+          fill="none"
+          stroke="#f59e0b"
+          strokeWidth="2.5"
+          opacity="0.9"
+        />
+
+        {/* Step labels */}
+        <text
+          x="140"
+          y="168"
+          textAnchor="middle"
+          fill="#f59e0b"
+          fontSize="10"
+          fontFamily="monospace"
+          letterSpacing="1"
+        >
+          STEP 1
+        </text>
+        <text
+          x="140"
+          y="186"
+          textAnchor="middle"
+          fill="#ededed"
+          fontSize="14"
+          fontWeight="bold"
+        >
+          Orbital Ring
+        </text>
+        <text x="140" y="204" textAnchor="middle" fill="#737373" fontSize="11">
+          around Earth
+        </text>
+
+        {/* ── Arrow 1 → 2 ── */}
+        <line
+          x1="215"
+          y1="108"
+          x2="264"
+          y2="108"
+          stroke="#2a2a2a"
+          strokeWidth="1.5"
+          markerEnd="url(#arrowhead)"
+        />
+
+        {/* ══════════════════════════════════════════
+            PANEL 2 — DYSON SPHERE  (cx=420, cy=108)
+        ══════════════════════════════════════════ */}
+
+        {/* Outer glow */}
+        <circle cx="420" cy="108" r="88" fill="#f59e0b" opacity="0.04" />
+        <circle cx="420" cy="108" r="78" fill="#f59e0b" opacity="0.06" />
+
+        {/* Dyson shell segments */}
+        <circle
+          cx="420"
+          cy="108"
+          r="74"
+          fill="none"
+          stroke="#f59e0b"
+          strokeWidth="2.5"
+          strokeDasharray="26 11"
+          opacity="0.65"
+        />
+
+        {/* Sun body */}
+        <circle cx="420" cy="108" r="44" fill="url(#sunGrad)" />
+
+        {/* Sun surface texture */}
+        <circle
+          cx="420"
+          cy="108"
+          r="44"
+          fill="none"
+          stroke="#fde68a"
+          strokeWidth="0.5"
+          opacity="0.4"
+        />
+
+        {/* Step labels */}
+        <text
+          x="420"
+          y="200"
+          textAnchor="middle"
+          fill="#f59e0b"
+          fontSize="10"
+          fontFamily="monospace"
+          letterSpacing="1"
+        >
+          STEP 2
+        </text>
+        <text
+          x="420"
+          y="218"
+          textAnchor="middle"
+          fill="#ededed"
+          fontSize="14"
+          fontWeight="bold"
+        >
+          Dyson Sphere
+        </text>
+        <text x="420" y="236" textAnchor="middle" fill="#737373" fontSize="11">
+          around the Sun
+        </text>
+
+        {/* ── Arrow 2 → 3 ── */}
+        <line
+          x1="505"
+          y1="108"
+          x2="554"
+          y2="108"
+          stroke="#2a2a2a"
+          strokeWidth="1.5"
+          markerEnd="url(#arrowhead)"
+        />
+
+        {/* ══════════════════════════════════════════
+            PANEL 3 — RELAY TO EARTH  (cx=700, cy=140)
+        ══════════════════════════════════════════ */}
+
+        {/* Relay satellites (small diamonds in space) */}
+        <rect
+          x="629"
+          y="44"
+          width="7"
+          height="7"
+          transform="rotate(45 632.5 47.5)"
+          fill="#f59e0b"
+          opacity="0.7"
+        />
+        <rect
+          x="762"
+          y="44"
+          width="7"
+          height="7"
+          transform="rotate(45 765.5 47.5)"
+          fill="#f59e0b"
+          opacity="0.7"
+        />
+
+        {/* Energy beams (glow layer) */}
+        <line
+          x1="633"
+          y1="48"
+          x2="688"
+          y2="112"
+          stroke="#f59e0b"
+          strokeWidth="5"
+          opacity="0.08"
+        />
+        <line
+          x1="767"
+          y1="48"
+          x2="712"
+          y2="112"
+          stroke="#f59e0b"
+          strokeWidth="5"
+          opacity="0.08"
+        />
+
+        {/* Energy beams (main) */}
+        <line
+          x1="633"
+          y1="48"
+          x2="688"
+          y2="112"
+          stroke="#f59e0b"
+          strokeWidth="1.5"
+          opacity="0.75"
+          strokeDasharray="6 3"
+        />
+        <line
+          x1="767"
+          y1="48"
+          x2="712"
+          y2="112"
+          stroke="#f59e0b"
+          strokeWidth="1.5"
+          opacity="0.75"
+          strokeDasharray="6 3"
+        />
+
+        {/* Earth */}
+        <circle cx="700" cy="140" r="34" fill="url(#earthGrad)" />
+        {/* Impact glow on Earth */}
+        <circle cx="700" cy="115" r="8" fill="#f59e0b" opacity="0.18" />
+        <ellipse
+          cx="688"
+          cy="132"
+          rx="9"
+          ry="6"
+          fill="#60a5fa"
+          opacity="0.25"
+        />
+
+        {/* Step labels */}
+        <text
+          x="700"
+          y="192"
+          textAnchor="middle"
+          fill="#f59e0b"
+          fontSize="10"
+          fontFamily="monospace"
+          letterSpacing="1"
+        >
+          STEP 3
+        </text>
+        <text
+          x="700"
+          y="210"
+          textAnchor="middle"
+          fill="#ededed"
+          fontSize="14"
+          fontWeight="bold"
+        >
+          Relay to Earth
+        </text>
+        <text x="700" y="228" textAnchor="middle" fill="#737373" fontSize="11">
+          wireless power
+        </text>
+      </svg>
     </div>
   );
 }
 
 export default function Home() {
   return (
-    <><Nav />
+    <>
+      <Nav />
       <main className="flex flex-col">
-
-      {/* Hero */}
-      <section className="pt-32 pb-20 px-6">
-        <div className="max-w-4xl mx-auto text-center">
-          <div className="inline-flex items-center gap-2 bg-solar/10 text-solar text-sm font-mono px-4 py-1.5 rounded-full mb-8 border border-solar/20">
-            <span className="w-1.5 h-1.5 bg-solar rounded-full animate-pulse" />
-            Research Phase — White Paper v1.2 Published
-          </div>
-          <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-6">
-            Eat The Sun
-          </h1>
-          <p className="text-xl md:text-2xl text-muted max-w-2xl mx-auto mb-12 leading-relaxed">
-            Building the cheapest path to limitless energy. An orbital ring that
-            bootstraps itself from a{" "}
-            <span className="text-solar font-semibold">$2M seed</span> into the
-            foundation for a Dyson swarm.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-20">
-            <Link
-              href="/research"
-              className="bg-solar hover:bg-solar-bright text-background font-semibold px-8 py-3 rounded-lg transition-colors"
-            >
-              Read the Research
-            </Link>
-            <Link
-              href="https://github.com/vargasjr-dev/eat-the-sun"
-              target="_blank"
-              className="border border-border hover:border-solar/50 text-foreground font-semibold px-8 py-3 rounded-lg transition-colors"
-            >
-              View on GitHub
-            </Link>
-          </div>
-
-          {/* Key stats */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-3xl mx-auto">
-            <Stat value="$1.40/kg" label="Marginal launch cost" />
-            <Stat value="98.6%" label="Cost reduction vs rockets" />
-            <Stat value="$2M" label="Minimum viable ring" />
-            <Stat value="30 days" label="First self-reinforcement" />
-          </div>
-        </div>
-      </section>
-
-      {/* The Problem → Solution */}
-      <section id="how-it-works" className="py-20 px-6 bg-surface">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center">
-            Rockets won&apos;t get us there
-          </h2>
-          <p className="text-muted text-center max-w-2xl mx-auto mb-16">
-            Building megastructures in space requires millions of tons of
-            material. Even at Starship&apos;s projected $100/kg, that&apos;s
-            hundreds of billions in launch costs alone. We need a different
-            approach.
-          </p>
-
-          <div className="grid md:grid-cols-2 gap-12">
-            <div>
-              <h3 className="text-xl font-bold mb-4 text-solar">
-                The Orbital Ring
-              </h3>
-              <p className="text-muted leading-relaxed mb-4">
-                A structure encircling Earth at 100 km altitude, supported by a
-                cable spinning faster than orbital velocity. The excess
-                centrifugal force holds stationary platforms in place — no
-                rockets needed.
-              </p>
-              <p className="text-muted leading-relaxed">
-                From these platforms, tethers reach down to the surface. Payloads
-                climb up mechanically. The marginal cost is electricity:{" "}
-                <span className="text-foreground font-semibold">
-                  $1.40 to lift 100 kg to orbit.
-                </span>
-              </p>
+        {/* ── Hero ── */}
+        <section className="pt-32 pb-20 px-6">
+          <div className="max-w-3xl mx-auto text-center">
+            <div className="inline-flex items-center gap-2 bg-solar/10 text-solar text-sm font-mono px-4 py-1.5 rounded-full mb-8 border border-solar/20">
+              <span className="w-1.5 h-1.5 bg-solar rounded-full animate-pulse" />
+              Research Phase — White Paper v1.2 Published
             </div>
-            <div>
-              <h3 className="text-xl font-bold mb-4 text-solar">
-                The Bootstrap
-              </h3>
-              <p className="text-muted leading-relaxed mb-4">
-                Previous orbital ring proposals required building the whole thing
-                before it worked. Ours doesn&apos;t. Start with a minimum viable
-                ring — 20 tonnes of Zylon cable. Use it to lift more cable. The
-                ring strengthens itself.
-              </p>
-              <p className="text-muted leading-relaxed">
-                First doubling: ~120 days. Second: ~60 days. Third: ~30 days.
-                Each doubling accelerates the next.{" "}
-                <span className="text-foreground font-semibold">
-                  The ring that costs $2M builds the ring that&apos;s worth $1T.
-                </span>
-              </p>
+            <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-6">
+              Eat The Sun
+            </h1>
+            <p className="text-xl md:text-2xl text-muted max-w-2xl mx-auto mb-12 leading-relaxed">
+              Harvest as much solar energy as possible from space and beam it
+              back to Earth.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link
+                href="/roadmap"
+                className="bg-solar hover:bg-solar-bright text-background font-semibold px-8 py-3 rounded-lg transition-colors"
+              >
+                Explore the Roadmap
+              </Link>
+              <Link
+                href="/research"
+                className="border border-border hover:border-solar/50 text-foreground font-semibold px-8 py-3 rounded-lg transition-colors"
+              >
+                Read the Research
+              </Link>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Three-stage transport */}
-      <section className="py-20 px-6">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center">
-            Surface to orbit in three stages
-          </h2>
-          <p className="text-muted text-center max-w-2xl mx-auto mb-16">
-            Each stage is optimized for its atmospheric environment. No stage
-            requires new physics — only proven engineering at unprecedented
-            scale.
-          </p>
+        {/* ── Three Steps ── */}
+        <section className="py-20 px-6 bg-surface">
+          <div className="max-w-5xl mx-auto">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center">
+              Three major steps
+            </h2>
+            <p className="text-muted text-center max-w-2xl mx-auto mb-14">
+              Each one unlocks the next. Each one is economically viable on its
+              own.
+            </p>
 
-          <div className="space-y-6">
-            <div className="flex gap-6 items-start">
-              <div className="flex-shrink-0 w-12 h-12 bg-solar/10 border border-solar/20 rounded-lg flex items-center justify-center text-solar font-mono font-bold">
-                01
-              </div>
-              <div>
-                <h3 className="font-bold text-lg">
-                  Surface → 20 km{" "}
-                  <span className="text-muted font-normal">
-                    Balloon-supported Dyneema tether
-                  </span>
-                </h3>
-                <p className="text-muted mt-1">
-                  Stratospheric balloon cluster holds the lower tether above the
-                  jet stream. Equatorial siting minimizes wind loading. Safety
-                  factor: 1.7-2.6×.
+            <MissionDiagram />
+
+            <div className="grid md:grid-cols-3 gap-8 mt-14">
+              <div className="text-center">
+                <div className="text-solar font-mono text-sm mb-2">STEP 1</div>
+                <h3 className="font-bold text-lg mb-2">Orbital Ring</h3>
+                <p className="text-muted text-sm leading-relaxed">
+                  A ring around Earth at 100 km altitude. Reduces launch costs
+                  from $2,700/kg to $1.40/kg — enabling everything that follows.
                 </p>
               </div>
-            </div>
-            <div className="flex gap-6 items-start">
-              <div className="flex-shrink-0 w-12 h-12 bg-solar/10 border border-solar/20 rounded-lg flex items-center justify-center text-solar font-mono font-bold">
-                02
-              </div>
-              <div>
-                <h3 className="font-bold text-lg">
-                  20 km → 100 km{" "}
-                  <span className="text-muted font-normal">
-                    Ring-supported Zylon tether
-                  </span>
-                </h3>
-                <p className="text-muted mt-1">
-                  Above all weather. 80 km of 1mm Zylon fiber supports 366 kg
-                  payloads. Negligible wind loading in the near-vacuum.
+              <div className="text-center">
+                <div className="text-solar font-mono text-sm mb-2">STEP 2</div>
+                <h3 className="font-bold text-lg mb-2">Dyson Sphere</h3>
+                <p className="text-muted text-sm leading-relaxed">
+                  Solar satellites manufactured from lunar material and launched
+                  for free. Scale until we capture a meaningful fraction of the
+                  Sun&apos;s total output.
                 </p>
               </div>
-            </div>
-            <div className="flex gap-6 items-start">
-              <div className="flex-shrink-0 w-12 h-12 bg-solar/10 border border-solar/20 rounded-lg flex items-center justify-center text-solar font-mono font-bold">
-                03
-              </div>
-              <div>
-                <h3 className="font-bold text-lg">
-                  Ring Platform{" "}
-                  <span className="text-muted font-normal">
-                    15 kg maglev stator at 100 km
-                  </span>
-                </h3>
-                <p className="text-muted mt-1">
-                  Magnetically levitated on the spinning rotor. Ground-powered
-                  via 3.3 kW high-voltage DC through the tether. Fiber-optic
-                  comms. Zero propellant.
+              <div className="text-center">
+                <div className="text-solar font-mono text-sm mb-2">STEP 3</div>
+                <h3 className="font-bold text-lg mb-2">Relay to Earth</h3>
+                <p className="text-muted text-sm leading-relaxed">
+                  Wireless power transmission from orbit to the surface. Clean,
+                  continuous energy anywhere on Earth — 24/7, no weather, no
+                  night.
                 </p>
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Roadmap teaser */}
-      <section id="roadmap" className="py-20 px-6 bg-surface">
-        <div className="max-w-5xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center">
-            From cable to Dyson swarm
-          </h2>
-          <p className="text-muted text-center max-w-2xl mx-auto mb-16">
-            Three phases. Each one unlocks the next. Each one is economically
-            viable on its own.
-          </p>
-
-          <div className="grid md:grid-cols-3 gap-6">
-            <PhaseCard
-              phase="Phase 1"
-              title="Orbital Ring"
-              description="Launch a minimum viable ring. Bootstrap it through self-reinforcing material transport. Reduce launch costs from $2,700/kg to $1.40/kg."
-              cost="Seed: $2-8M"
-            />
-            <PhaseCard
-              phase="Phase 2"
-              title="Lunar Integration"
-              description="Electromagnetic mass driver on Shackleton Crater. Sling lunar silicon, aluminum, and iron to Earth orbit. Unlimited raw material at negligible marginal cost."
-              cost="Enabled by Phase 1"
-            />
-            <PhaseCard
-              phase="Phase 3"
-              title="Dyson Swarm"
-              description="Manufacture solar power satellites from lunar material. Each satellite captures energy AND runs computation. Scale to Mercury disassembly for full swarm."
-              cost="Enabled by Phase 2"
-            />
+        {/* ── Follow the Build ── */}
+        <section className="py-20 px-6 border-t border-border">
+          <div className="max-w-2xl mx-auto text-center">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              Follow the build
+            </h2>
+            <p className="text-muted max-w-xl mx-auto mb-10 leading-relaxed">
+              We&apos;re doing this in the open — research, simulations, and
+              hardware milestones as they happen. Drop your email to follow
+              along, or become a patron to directly support the research.
+            </p>
+            <SubscribeForm />
           </div>
+        </section>
 
-          <div className="text-center mt-12">
-            <Link
-              href="/roadmap"
-              className="inline-flex items-center gap-2 text-solar hover:text-solar-bright font-semibold transition-colors"
-            >
-              See the full 10-step roadmap →
-            </Link>
-            <Link
-              href="/build"
-              className="text-muted hover:text-foreground transition-colors"
-            >
-              Build
-            </Link>
+        {/* ── Footer ── */}
+        <footer className="py-8 px-6 border-t border-border">
+          <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+            <div className="flex items-center gap-2 text-sm text-muted">
+              <SolarIcon className="w-4 h-4 text-solar" />
+              <span>Infinite Vibes — 2026</span>
+            </div>
+            <div className="flex items-center gap-6 text-sm text-muted">
+              <Link
+                href="/roadmap"
+                className="hover:text-foreground transition-colors"
+              >
+                Roadmap
+              </Link>
+              <Link
+                href="/research"
+                className="hover:text-foreground transition-colors"
+              >
+                Research
+              </Link>
+              <Link
+                href="https://github.com/vargasjr-dev/infinitevibes.solar"
+                target="_blank"
+                className="hover:text-foreground transition-colors"
+              >
+                GitHub
+              </Link>
+            </div>
           </div>
-        </div>
-      </section>
-
-      {/* Thermal proof teaser */}
-      <section className="py-20 px-6">
-        <div className="max-w-4xl mx-auto text-center">
-          <div className="inline-flex items-center gap-2 text-green-400 font-mono text-sm mb-4">
-            <span className="w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse" />
-            INTERACTIVE PROOF — LIVE
-          </div>
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Does it melt?
-          </h2>
-          <p className="text-muted max-w-2xl mx-auto mb-8">
-            A cable moving at 8 km/s through the upper atmosphere sounds like it
-            should vaporize. It doesn&apos;t. At 100 km altitude, equilibrium
-            temperature is -10°C in solar minimum — colder than a winter day in
-            New York. Explore the thermal model yourself.
-          </p>
-          <Link
-            href="/simulations/thermal-equilibrium"
-            className="inline-flex items-center gap-2 bg-solar hover:bg-solar-bright text-background font-semibold px-8 py-3 rounded-lg transition-colors"
-          >
-            Launch Simulation →
-          </Link>
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section className="py-20 px-6 bg-surface border-t border-border">
-        <div className="max-w-3xl mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Follow the build
-          </h2>
-          <p className="text-muted max-w-xl mx-auto mb-8">
-            We&apos;re publishing our research, simulations, and progress in the
-            open. Star the repo to follow along.
-          </p>
-          <Link
-            href="https://github.com/vargasjr-dev/eat-the-sun"
-            target="_blank"
-            className="inline-flex items-center gap-2 bg-solar hover:bg-solar-bright text-background font-semibold px-8 py-3 rounded-lg transition-colors"
-          >
-            Star on GitHub
-          </Link>
-        </div>
-      </section>
-
-      {/* Footer */}
-      <footer className="py-8 px-6 border-t border-border">
-        <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-2 text-sm text-muted">
-            <SolarIcon className="w-4 h-4 text-solar" />
-            <span>Eat The Sun — 2026</span>
-          </div>
-          <div className="flex items-center gap-6 text-sm text-muted">
-            <Link
-              href="/research"
-              className="hover:text-foreground transition-colors"
-            >
-              Research
-            </Link>
-            <Link
-              href="https://github.com/vargasjr-dev/eat-the-sun"
-              target="_blank"
-              className="hover:text-foreground transition-colors"
-            >
-              GitHub
-            </Link>
-          </div>
-        </div>
-      </footer>
-    </main>
+        </footer>
+      </main>
     </>
   );
 }

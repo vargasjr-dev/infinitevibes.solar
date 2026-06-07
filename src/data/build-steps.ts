@@ -33,8 +33,14 @@ export const buildSteps: BuildStep[] = [
       { label: "Prototype cable length", value: "1-10 km" },
       { label: "Estimated prototype budget", value: "$50K-200K" },
       { label: "Duration", value: "6-12 months" },
-      { label: "Test environments", value: "Ground, vacuum chamber, stratosphere" },
-      { label: "Success criteria", value: "All sub-steps pass before Step 1 begins" },
+      {
+        label: "Test environments",
+        value: "Ground, vacuum chamber, stratosphere",
+      },
+      {
+        label: "Success criteria",
+        value: "All sub-steps pass before Step 1 begins",
+      },
     ],
     openQuestions: [
       "What test facility has vacuum chambers large enough to simulate 100 km conditions on a cable segment?",
@@ -49,11 +55,23 @@ export const buildSteps: BuildStep[] = [
           "Before defaulting to Zylon, conduct a rigorous comparison of all candidate rotor cable materials. The orbital ring rotor needs the highest possible specific strength (tensile strength ÷ density) to minimize mass at 8 km/s hoop stress. Zylon (PBO) leads at 5.8 GPa tensile / 1.56 g/cm³, but it's a sole-source material from Toyobo with known degradation issues (UV, moisture, atomic oxygen). Alternatives include carbon fiber (multiple manufacturers, 3.5-6.0 GPa, but brittle), Dyneema/UHMWPE (excellent UV resistance, but melts at ~150°C — fatal for aerodynamic heating), and Kevlar/aramid (heat-resistant but weaker at 3.0-3.6 GPa). The trade study must weigh tensile strength, thermal limits, environmental degradation, supply chain risk, and cost.",
         specs: [
           { label: "Zylon (PBO)", value: "5.8 GPa / 1.56 g/cm³ — Toyobo only" },
-          { label: "Carbon fiber (T1000G)", value: "6.4 GPa / 1.80 g/cm³ — multiple mfrs" },
-          { label: "Dyneema SK99", value: "4.1 GPa / 0.97 g/cm³ — melts at 150°C ❌" },
+          {
+            label: "Carbon fiber (T1000G)",
+            value: "6.4 GPa / 1.80 g/cm³ — multiple mfrs",
+          },
+          {
+            label: "Dyneema SK99",
+            value: "4.1 GPa / 0.97 g/cm³ — melts at 150°C ❌",
+          },
           { label: "Kevlar 49", value: "3.6 GPa / 1.44 g/cm³ — weaker" },
-          { label: "Vectran HT", value: "3.2 GPa / 1.40 g/cm³ — good creep resistance" },
-          { label: "Hoop stress requirement", value: "3.88 GPa minimum (1.5× safety factor)" },
+          {
+            label: "Vectran HT",
+            value: "3.2 GPa / 1.40 g/cm³ — good creep resistance",
+          },
+          {
+            label: "Hoop stress requirement",
+            value: "3.88 GPa minimum (1.5× safety factor)",
+          },
         ],
         status: "resolved",
         resolution: {
@@ -71,11 +89,17 @@ export const buildSteps: BuildStep[] = [
           "Source small-quantity Zylon (PBO) fiber for splice testing and prototype fabrication. This is a procurement step — get the material in hand before committing to lab time.\n\nZylon is available through Teijin Frontier USA (primary US distributor) and Avient/Fiber-Line in standard deniers (250, 500, 1000, 1500, 3000d). Hayami Industry Co. (Japan) explicitly accepts small-quantity trial orders of braided Zylon cord. For 50 splices on 1-5 m segments, total material is 50-250 m of fiber (~0.1-0.5 kg) — a trivial order at ~$100-200/kg retail.\n\nOrder both AS (standard modulus) and HM (high modulus) variants for comparison. HM has higher stiffness and lower creep but may behave differently under splice loading. Request the Toyobo technical data sheet with the order to confirm exact specs.",
         specs: [
           { label: "Material needed", value: "50-250 m Zylon (~0.1-0.5 kg)" },
-          { label: "Variants to order", value: "AS (standard modulus) + HM (high modulus)" },
+          {
+            label: "Variants to order",
+            value: "AS (standard modulus) + HM (high modulus)",
+          },
           { label: "Deniers available", value: "250, 500, 1000, 1500, 3000" },
           { label: "US distributor", value: "Teijin Frontier USA" },
           { label: "Alt. distributor", value: "Avient/Fiber-Line" },
-          { label: "Small-order supplier", value: "Hayami Industry Co. (Japan)" },
+          {
+            label: "Small-order supplier",
+            value: "Hayami Industry Co. (Japan)",
+          },
           { label: "Estimated material cost", value: "$50-200" },
           { label: "Lead time", value: "1-4 weeks" },
         ],
@@ -88,12 +112,22 @@ export const buildSteps: BuildStep[] = [
         description:
           "Before running the formal 50-splice test matrix, build a controlled splice jig and develop hand technique for working with PBO fiber. Zylon's rigid molecular structure (higher stiffness than Dyneema or Kevlar) means standard rope splicing techniques may not transfer directly — the fiber handling and interleaving process needs to be learned and refined on actual material.\n\nThe jig is a simple fixture: a board with adjustable clamps to hold both fiber ends at controlled tension, graduated markings for consistent overlap lengths (10-50 cm), guide channels to keep filaments aligned during interleaving, and a small serving tool for wrapping binding thread at even tension. Total cost under $200 in hardware store parts.\n\nSuccess criteria: produce 5 consecutive splices with visually identical geometry — consistent overlap length, even filament distribution, uniform serving wrap — before advancing to formal tensile testing. This step also serves as an early filter: if PBO's stiffness makes braided overlap impractical at test scale, the formal test matrix should weight mechanical sleeve and adhesive bond methods more heavily.",
         specs: [
-          { label: "Jig components", value: "Board, adjustable clamps, guide channels, serving tool" },
+          {
+            label: "Jig components",
+            value: "Board, adjustable clamps, guide channels, serving tool",
+          },
           { label: "Estimated jig cost", value: "~$100-200" },
           { label: "Practice splices before formal testing", value: "10-20" },
-          { label: "Parameters to dial in", value: "Overlap length, filament separation, serving tension, interleave pattern" },
+          {
+            label: "Parameters to dial in",
+            value:
+              "Overlap length, filament separation, serving tension, interleave pattern",
+          },
           { label: "Time estimate", value: "1-2 weeks" },
-          { label: "Success criteria", value: "5 consecutive visually identical splices" },
+          {
+            label: "Success criteria",
+            value: "5 consecutive visually identical splices",
+          },
         ],
         status: "open",
         answersQuestion:
@@ -105,12 +139,28 @@ export const buildSteps: BuildStep[] = [
           "With Zylon fiber in hand, fabricate 50 test splices using candidate methods (braided overlap, fusion, mechanical) on 1-5 m cable segments and load each to failure. Target: ≥95% of virgin fiber breaking strength. Document failure modes (splice slippage vs. fiber rupture) and establish minimum overlap length. This directly determines whether the 40,000 km cable is viable as a spliced assembly.\n\nTensile testing access: University materials labs are the most cost-effective path. Most ME, aerospace, and civil engineering departments have universal testing machines (Instron, MTS) in the 10-100 kN range and rent lab time to external users at $50-200/hr. TestResources also offers direct machine rental. Target: a 100 kN UTM with fiber/yarn grips and an extensometer.\n\nBudget: The real costs are lab time ($1K-3K for ~20 sessions), splice fabrication tooling (braiding jig, adhesives, fixtures — $500-1K), and failure documentation (high-speed camera rental $500-1K). A university partnership or makerspace with an Instron could cut costs significantly. Save $5K-8K for this step.",
         specs: [
           { label: "Test samples", value: "50 splices across 3 methods" },
-          { label: "Splice methods", value: "Braided overlap, fusion, mechanical" },
+          {
+            label: "Splice methods",
+            value: "Braided overlap, fusion, mechanical",
+          },
           { label: "Target efficiency", value: "≥95% of virgin strength" },
-          { label: "Test equipment", value: "Universal testing machine (100 kN) + yarn grips" },
-          { label: "Lab access", value: "University materials lab ($50-200/hr) or TestResources rental" },
-          { label: "Failure documentation", value: "High-speed camera + strain gauge + extensometer" },
-          { label: "Budget target", value: "$5K-8K (lab time + tooling + documentation)" },
+          {
+            label: "Test equipment",
+            value: "Universal testing machine (100 kN) + yarn grips",
+          },
+          {
+            label: "Lab access",
+            value:
+              "University materials lab ($50-200/hr) or TestResources rental",
+          },
+          {
+            label: "Failure documentation",
+            value: "High-speed camera + strain gauge + extensometer",
+          },
+          {
+            label: "Budget target",
+            value: "$5K-8K (lab time + tooling + documentation)",
+          },
         ],
         status: "open",
         answersQuestion:
@@ -122,9 +172,18 @@ export const buildSteps: BuildStep[] = [
           "Subject coated cable samples to atomic oxygen bombardment in a vacuum chamber, simulating conditions at 100 km altitude. Test at least three coating types: SiO₂ (CVD), Al₂O₃ (ALD), and aluminum foil sheath. Measure mass loss, tensile strength retention, and coating adhesion after simulated exposure equivalent to 1, 6, and 12 months. NASA Glenn Research Center and AFRL have ground-based AO exposure facilities (e.g., the MPAC&SEED or directed-beam AO sources).",
         specs: [
           { label: "Coatings to test", value: "SiO₂, Al₂O₃, Al foil, hybrid" },
-          { label: "Simulated exposure", value: "1, 6, and 12 months at 100 km AO flux" },
-          { label: "Measurements", value: "Mass loss, tensile retention, SEM imaging" },
-          { label: "Facilities", value: "NASA Glenn, AFRL, or commercial AO labs" },
+          {
+            label: "Simulated exposure",
+            value: "1, 6, and 12 months at 100 km AO flux",
+          },
+          {
+            label: "Measurements",
+            value: "Mass loss, tensile retention, SEM imaging",
+          },
+          {
+            label: "Facilities",
+            value: "NASA Glenn, AFRL, or commercial AO labs",
+          },
           { label: "Estimated cost", value: "$15K-50K" },
         ],
         status: "open",
@@ -139,8 +198,14 @@ export const buildSteps: BuildStep[] = [
           { label: "Loop length", value: "1-10 km" },
           { label: "Cable mass", value: "0.5-5 kg" },
           { label: "Test duration", value: "4-12 weeks continuous" },
-          { label: "Measurements", value: "Tension, creep, temperature, splice integrity" },
-          { label: "Estimated cost", value: "$10K-30K (infrastructure + instrumentation)" },
+          {
+            label: "Measurements",
+            value: "Tension, creep, temperature, splice integrity",
+          },
+          {
+            label: "Estimated cost",
+            value: "$10K-30K (infrastructure + instrumentation)",
+          },
         ],
         status: "open",
         answersQuestion:
@@ -154,9 +219,18 @@ export const buildSteps: BuildStep[] = [
           { label: "Altitude", value: "30-35 km" },
           { label: "Cable length", value: "1-5 km (suspended below balloon)" },
           { label: "Duration", value: "1-4 weeks" },
-          { label: "Environment", value: "0.01 atm, UV, thermal cycling ±100°C" },
-          { label: "Balloon providers", value: "World View, Aerostar, Near Space Corp" },
-          { label: "Estimated cost", value: "$20K-80K (flight + instrumentation)" },
+          {
+            label: "Environment",
+            value: "0.01 atm, UV, thermal cycling ±100°C",
+          },
+          {
+            label: "Balloon providers",
+            value: "World View, Aerostar, Near Space Corp",
+          },
+          {
+            label: "Estimated cost",
+            value: "$20K-80K (flight + instrumentation)",
+          },
         ],
         status: "open",
         answersQuestion:
@@ -171,7 +245,10 @@ export const buildSteps: BuildStep[] = [
           { label: "Deployment speed", value: "10-100 m/s (scaled)" },
           { label: "Sounding rocket option", value: "~$15K-50K per flight" },
           { label: "Ground rig option", value: "~$5K-20K" },
-          { label: "Instrumentation", value: "High-speed camera, tension load cells, IMU" },
+          {
+            label: "Instrumentation",
+            value: "High-speed camera, tension load cells, IMU",
+          },
         ],
         status: "open",
         answersQuestion:
@@ -213,9 +290,18 @@ export const buildSteps: BuildStep[] = [
           { label: "US distributor", value: "Teijin Frontier USA" },
           { label: "EU distributor", value: "FibrXL (Netherlands)" },
           { label: "China distributor", value: "3L Tex Co., Ltd." },
-          { label: "Existing aerospace user", value: "SpaceX (Crew Dragon parachutes)" },
-          { label: "NASA usage", value: "Stratospheric superpressure balloons" },
-          { label: "Supply risk level", value: "Critical — no alternative manufacturer" },
+          {
+            label: "Existing aerospace user",
+            value: "SpaceX (Crew Dragon parachutes)",
+          },
+          {
+            label: "NASA usage",
+            value: "Stratospheric superpressure balloons",
+          },
+          {
+            label: "Supply risk level",
+            value: "Critical — no alternative manufacturer",
+          },
         ],
         status: "open",
         answersQuestion:
@@ -229,7 +315,10 @@ export const buildSteps: BuildStep[] = [
           { label: "Manufacturer", value: "Toyobo Co., Ltd. (Japan)" },
           { label: "Current global output", value: "~300-500 tonnes/year" },
           { label: "Required volume", value: "20 tonnes (~4-7% of output)" },
-          { label: "Max continuous spool (est.)", value: "~50-200 km per bobbin" },
+          {
+            label: "Max continuous spool (est.)",
+            value: "~50-200 km per bobbin",
+          },
           { label: "Splices needed (est.)", value: "200-800 splices" },
         ],
         status: "open",
@@ -241,11 +330,26 @@ export const buildSteps: BuildStep[] = [
         description:
           "If the cable cannot be produced as a single continuous fiber (almost certainly the case — no industrial process produces 40,000 km continuous filament), every splice becomes a potential failure point. The splice must carry the full hoop stress of 3.88 GPa without being the weak link. Options include fusion splicing (thermal bonding of PBO ends), mechanical splicing (overlapping fibers with adhesive sheathing), and braided integration (interleaving fiber ends over a long overlap zone). The overlap length determines splice efficiency — longer overlaps approach 100% of virgin fiber strength but add mass.",
         specs: [
-          { label: "Target splice efficiency", value: "≥95% of virgin fiber strength" },
-          { label: "Fusion splice (PBO)", value: "~70-80% efficiency (research stage)" },
-          { label: "Braided overlap splice", value: "~90-98% efficiency at 50-100× diameter overlap" },
-          { label: "Mass penalty per splice", value: "~10-50g (at braided overlap)" },
-          { label: "Total splice mass (800 splices)", value: "~8-40 kg (<0.2% of total)" },
+          {
+            label: "Target splice efficiency",
+            value: "≥95% of virgin fiber strength",
+          },
+          {
+            label: "Fusion splice (PBO)",
+            value: "~70-80% efficiency (research stage)",
+          },
+          {
+            label: "Braided overlap splice",
+            value: "~90-98% efficiency at 50-100× diameter overlap",
+          },
+          {
+            label: "Mass penalty per splice",
+            value: "~10-50g (at braided overlap)",
+          },
+          {
+            label: "Total splice mass (800 splices)",
+            value: "~8-40 kg (<0.2% of total)",
+          },
         ],
         status: "open",
         answersQuestion:
@@ -261,7 +365,10 @@ export const buildSteps: BuildStep[] = [
           { label: "Total cable cost range", value: "$1M - $3M" },
           { label: "Lead time (est.)", value: "6-12 months" },
           { label: "Supplier", value: "Toyobo (sole source)" },
-          { label: "Supply risk", value: "High — single manufacturer, no alternatives" },
+          {
+            label: "Supply risk",
+            value: "High — single manufacturer, no alternatives",
+          },
         ],
         status: "open",
         answersQuestion:
@@ -276,8 +383,14 @@ export const buildSteps: BuildStep[] = [
           { label: "Fairing height (usable)", value: "~22 m" },
           { label: "Cable diameter", value: "~1 mm (single strand)" },
           { label: "Winding layers (est.)", value: "~4,000 layers" },
-          { label: "Spool mass budget", value: "~500-1,000 kg (aluminum frame)" },
-          { label: "Deployment mechanism", value: "TBD — motorized or spin-release" },
+          {
+            label: "Spool mass budget",
+            value: "~500-1,000 kg (aluminum frame)",
+          },
+          {
+            label: "Deployment mechanism",
+            value: "TBD — motorized or spin-release",
+          },
         ],
         status: "open",
         answersQuestion:
@@ -289,7 +402,10 @@ export const buildSteps: BuildStep[] = [
           "At 100 km altitude, atomic oxygen (AO) density is approximately 10⁹ atoms/cm³. AO is the primary degradation mechanism for organic polymers in low Earth orbit — it erodes exposed surfaces through oxidation. Zylon (PBO) is an organic polymer and is vulnerable. The International Space Station uses protective coatings (SiO₂, Al₂O₃) on exposed polymer surfaces. The rotor cable needs a conformal coating that survives 8 km/s relative wind while protecting the fiber underneath. Options: chemical vapor deposition (CVD) of silicon oxide, atomic layer deposition (ALD) of alumina, or a pre-applied metal foil sheath.",
         specs: [
           { label: "AO density at 100 km", value: "~10⁹ atoms/cm³" },
-          { label: "AO erosion rate (unprotected PBO)", value: "~1-10 μm/year (est.)" },
+          {
+            label: "AO erosion rate (unprotected PBO)",
+            value: "~1-10 μm/year (est.)",
+          },
           { label: "SiO₂ coating thickness", value: "100-500 nm" },
           { label: "Al₂O₃ (ALD) coating", value: "50-200 nm" },
           { label: "Metal foil sheath", value: "5-25 μm aluminum" },

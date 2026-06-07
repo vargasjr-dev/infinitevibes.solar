@@ -32,16 +32,17 @@ function extractPaperMeta(filename: string, content: string): PaperMeta {
   const version = versionMatch ? versionMatch[1] : "";
 
   const dateMatch = content.match(
-    /(?:Draft v[\d.]+ — |^\*.*?— )(.+?)(?:\s*$|\*)/m
+    /(?:Draft v[\d.]+ — |^\*.*?— )(.+?)(?:\s*$|\*)/m,
   );
   const date = dateMatch ? dateMatch[1].replace(/\*/g, "").trim() : "";
 
   // Extract abstract: text between "## Abstract" and the next "##"
   const abstractMatch = content.match(
-    /## Abstract\s*\n+([\s\S]*?)(?=\n## |\n---)/
+    /## Abstract\s*\n+([\s\S]*?)(?=\n## |\n---)/,
   );
   const abstract = abstractMatch
-    ? abstractMatch[1].trim().slice(0, 400) + (abstractMatch[1].length > 400 ? "..." : "")
+    ? abstractMatch[1].trim().slice(0, 400) +
+      (abstractMatch[1].length > 400 ? "..." : "")
     : "";
 
   return { slug, title, authors, date, version, abstract, status: "draft" };
@@ -106,23 +107,23 @@ export default function ResearchPage() {
   });
 
   return (
-    <><Nav />
+    <>
+      <Nav />
       <main className="pt-24 pb-20 px-6">
+        <div className="max-w-4xl mx-auto">
+          <h1 className="text-4xl md:text-5xl font-bold mb-4">Research</h1>
+          <p className="text-muted text-lg mb-12">
+            White papers, technical analyses, and simulation results. All
+            research is published openly.
+          </p>
 
-      <div className="max-w-4xl mx-auto">
-        <h1 className="text-4xl md:text-5xl font-bold mb-4">Research</h1>
-        <p className="text-muted text-lg mb-12">
-          White papers, technical analyses, and simulation results. All research
-          is published openly.
-        </p>
-
-        <div className="space-y-6">
-          {papers.map((paper) => (
-            <PaperCard key={paper.slug} paper={paper} />
-          ))}
+          <div className="space-y-6">
+            {papers.map((paper) => (
+              <PaperCard key={paper.slug} paper={paper} />
+            ))}
+          </div>
         </div>
-      </div>
-    </main>
+      </main>
     </>
   );
 }

@@ -21,11 +21,9 @@ function SolarIcon({ className }: { className?: string }) {
 
 const links = [
   { href: "/roadmap", label: "Roadmap" },
-  { href: "/build", label: "Build" },
-  { href: "/simulations", label: "Simulations" },
   { href: "/research", label: "Research" },
   {
-    href: "https://github.com/vargasjr-dev/eat-the-sun",
+    href: "https://github.com/vargasjr-dev/infinitevibes.solar",
     label: "GitHub",
     external: true,
   },
@@ -46,7 +44,7 @@ export default function Nav() {
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2 font-bold">
           <SolarIcon className="w-5 h-5 text-solar" />
-          <span>Eat The Sun</span>
+          <span>Infinite Vibes</span>
         </Link>
 
         {/* Desktop links */}

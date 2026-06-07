@@ -15,14 +15,14 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params;
   const step = getStepBySlug(slug);
-  if (!step) return { title: "Not Found — Eat The Sun" };
+  if (!step) return { title: "Not Found — Infinite Vibes" };
   return {
-    title: `Step ${step.step}: ${step.title} — Build Sequence — Eat The Sun`,
+    title: `Step ${step.step}: ${step.title} — Roadmap — Infinite Vibes`,
     description: step.description,
   };
 }
 
-export default async function BuildStepPage({
+export default async function RoadmapStepPage({
   params,
 }: {
   params: Promise<{ slug: string }>;
@@ -44,10 +44,10 @@ export default async function BuildStepPage({
           {/* Breadcrumb */}
           <div className="flex items-center gap-2 text-sm text-muted mb-6">
             <Link
-              href="/build"
+              href="/roadmap"
               className="hover:text-foreground transition-colors"
             >
-              Build Sequence
+              Roadmap
             </Link>
             <span>/</span>
             <span className="text-foreground">Step {step.step}</span>
@@ -137,7 +137,9 @@ export default async function BuildStepPage({
                     {sub.status === "resolved" && sub.resolution && (
                       <div className="px-5 py-4 bg-green-500/5 border-b border-border/50">
                         <div className="flex items-start gap-2 mb-2">
-                          <span className="text-green-400 flex-shrink-0 mt-0.5">✓</span>
+                          <span className="text-green-400 flex-shrink-0 mt-0.5">
+                            ✓
+                          </span>
                           <p className="text-sm font-medium text-green-300">
                             {sub.resolution.summary}
                           </p>
@@ -147,11 +149,16 @@ export default async function BuildStepPage({
                             Show rationale
                           </summary>
                           {sub.resolution.rationale.includes("\n\n") ? (
-                            sub.resolution.rationale.split("\n\n").map((para, k) => (
-                              <p key={k} className={`text-xs text-muted leading-relaxed ${k === 0 ? "mt-2" : "mt-3"}`}>
-                                {para}
-                              </p>
-                            ))
+                            sub.resolution.rationale
+                              .split("\n\n")
+                              .map((para, k) => (
+                                <p
+                                  key={k}
+                                  className={`text-xs text-muted leading-relaxed ${k === 0 ? "mt-2" : "mt-3"}`}
+                                >
+                                  {para}
+                                </p>
+                              ))
                           ) : (
                             <p className="mt-2 text-xs text-muted leading-relaxed">
                               {sub.resolution.rationale}
@@ -212,7 +219,9 @@ export default async function BuildStepPage({
               <ul className="space-y-2">
                 {step.openQuestions.map((q, i) => (
                   <li key={i} className="text-sm text-muted flex gap-2">
-                    <span className="text-solar/60 flex-shrink-0 mt-0.5">?</span>
+                    <span className="text-solar/60 flex-shrink-0 mt-0.5">
+                      ?
+                    </span>
                     <span>{q}</span>
                   </li>
                 ))}
@@ -224,7 +233,7 @@ export default async function BuildStepPage({
           <div className="flex items-center justify-between gap-4 pt-6 border-t border-border">
             {prevStep ? (
               <Link
-                href={`/build/${prevStep.slug}`}
+                href={`/roadmap/${prevStep.slug}`}
                 className="group flex items-center gap-2 text-sm text-muted hover:text-foreground transition-colors"
               >
                 <svg
@@ -250,7 +259,7 @@ export default async function BuildStepPage({
             )}
             {nextStep ? (
               <Link
-                href={`/build/${nextStep.slug}`}
+                href={`/roadmap/${nextStep.slug}`}
                 className="group flex items-center gap-2 text-sm text-muted hover:text-foreground transition-colors text-right"
               >
                 <span>

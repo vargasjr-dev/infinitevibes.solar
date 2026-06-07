@@ -35,12 +35,10 @@ function extractAuthors(content: string): string {
   return match ? match[1] : "";
 }
 
-function extractMeta(
-  content: string
-): { version: string; date: string } {
+function extractMeta(content: string): { version: string; date: string } {
   const versionMatch = content.match(/Draft (v[\d.]+)/);
   const dateMatch = content.match(
-    /(?:Draft v[\d.]+ — |^\*.*?— )(.+?)(?:\s*$|\*)/m
+    /(?:Draft v[\d.]+ — |^\*.*?— )(.+?)(?:\s*$|\*)/m,
   );
   return {
     version: versionMatch ? versionMatch[1] : "",
@@ -138,7 +136,7 @@ function renderContent(content: string) {
         row
           .split("|")
           .filter((c) => c.trim())
-          .map((c) => c.trim())
+          .map((c) => c.trim()),
       );
 
       elements.push(
@@ -167,7 +165,7 @@ function renderContent(content: string) {
                           dangerouslySetInnerHTML={{
                             __html: cell.replace(
                               /\*\*(.*?)\*\*/g,
-                              "<strong>$1</strong>"
+                              "<strong>$1</strong>",
                             ),
                           }}
                         />
@@ -180,7 +178,7 @@ function renderContent(content: string) {
               ))}
             </tbody>
           </table>
-        </div>
+        </div>,
       );
       continue;
     }
@@ -204,13 +202,13 @@ function renderContent(content: string) {
                 __html: item
                   .replace(
                     /\*\*(.*?)\*\*/g,
-                    '<strong class="text-foreground">$1</strong>'
+                    '<strong class="text-foreground">$1</strong>',
                   )
                   .replace(/\*(.*?)\*/g, "<em>$1</em>"),
               }}
             />
           ))}
-        </ul>
+        </ul>,
       );
       continue;
     }
@@ -234,13 +232,13 @@ function renderContent(content: string) {
                 __html: item
                   .replace(
                     /\*\*(.*?)\*\*/g,
-                    '<strong class="text-foreground">$1</strong>'
+                    '<strong class="text-foreground">$1</strong>',
                   )
                   .replace(/\*(.*?)\*/g, "<em>$1</em>"),
               }}
             />
           ))}
-        </ol>
+        </ol>,
       );
       continue;
     }
@@ -257,7 +255,7 @@ function renderContent(content: string) {
           className="font-mono text-sm bg-surface-elevated border border-border rounded-lg px-4 py-3 my-4 text-solar overflow-x-auto"
         >
           {line.replace(/^\$\$|\$\$$/g, "").trim()}
-        </div>
+        </div>,
       );
       i++;
       continue;
@@ -278,11 +276,11 @@ function renderContent(content: string) {
           __html: line
             .replace(
               /\*\*(.*?)\*\*/g,
-              '<strong class="text-foreground">$1</strong>'
+              '<strong class="text-foreground">$1</strong>',
             )
             .replace(/\*(.*?)\*/g, "<em>$1</em>"),
         }}
-      />
+      />,
     );
     i++;
   }
@@ -302,89 +300,87 @@ export default async function PaperPage({ params }: Props) {
   const sections = parseMarkdownToSections(content);
 
   return (
-    <><Nav />
+    <>
+      <Nav />
       <main className="pt-24 pb-20 px-6">
-
-      <article className="max-w-3xl mx-auto">
-        {/* Paper header */}
-        <div className="mb-12">
-          <div className="flex items-center gap-3 mb-6">
-            <span className="text-xs font-mono px-2.5 py-1 rounded-full border bg-solar/10 text-solar border-solar/20">
-              Draft
-            </span>
-            {version && (
-              <span className="text-muted text-sm">{version}</span>
-            )}
-            {date && (
-              <>
-                <span className="text-muted text-sm">·</span>
-                <span className="text-muted text-sm">{date}</span>
-              </>
-            )}
+        <article className="max-w-3xl mx-auto">
+          {/* Paper header */}
+          <div className="mb-12">
+            <div className="flex items-center gap-3 mb-6">
+              <span className="text-xs font-mono px-2.5 py-1 rounded-full border bg-solar/10 text-solar border-solar/20">
+                Draft
+              </span>
+              {version && <span className="text-muted text-sm">{version}</span>}
+              {date && (
+                <>
+                  <span className="text-muted text-sm">·</span>
+                  <span className="text-muted text-sm">{date}</span>
+                </>
+              )}
+            </div>
+            <h1 className="text-3xl md:text-4xl font-bold leading-tight mb-4">
+              {title}
+            </h1>
+            {authors && <p className="text-muted">{authors}</p>}
           </div>
-          <h1 className="text-3xl md:text-4xl font-bold leading-tight mb-4">
-            {title}
-          </h1>
-          {authors && <p className="text-muted">{authors}</p>}
-        </div>
 
-        {/* Table of contents */}
-        <div className="bg-surface border border-border rounded-xl p-6 mb-12">
-          <h2 className="font-bold text-sm uppercase tracking-wider text-muted mb-4">
-            Contents
-          </h2>
-          <nav className="space-y-1">
-            {sections
-              .filter((s) => s.level <= 2)
-              .map((section, i) => (
-                <a
-                  key={i}
-                  href={`#${section.title
-                    .toLowerCase()
-                    .replace(/[^a-z0-9]+/g, "-")
-                    .replace(/(^-|-$)/g, "")}`}
-                  className={`block text-sm text-muted hover:text-solar transition-colors ${
-                    section.level === 1 ? "font-medium" : "pl-4"
-                  }`}
-                >
-                  {section.title}
-                </a>
-              ))}
-          </nav>
-        </div>
+          {/* Table of contents */}
+          <div className="bg-surface border border-border rounded-xl p-6 mb-12">
+            <h2 className="font-bold text-sm uppercase tracking-wider text-muted mb-4">
+              Contents
+            </h2>
+            <nav className="space-y-1">
+              {sections
+                .filter((s) => s.level <= 2)
+                .map((section, i) => (
+                  <a
+                    key={i}
+                    href={`#${section.title
+                      .toLowerCase()
+                      .replace(/[^a-z0-9]+/g, "-")
+                      .replace(/(^-|-$)/g, "")}`}
+                    className={`block text-sm text-muted hover:text-solar transition-colors ${
+                      section.level === 1 ? "font-medium" : "pl-4"
+                    }`}
+                  >
+                    {section.title}
+                  </a>
+                ))}
+            </nav>
+          </div>
 
-        {/* Paper content */}
-        <div className="prose-custom">
-          {sections.map((section, i) => (
-            <section
-              key={i}
-              id={section.title
-                .toLowerCase()
-                .replace(/[^a-z0-9]+/g, "-")
-                .replace(/(^-|-$)/g, "")}
-              className="mb-12"
-            >
-              {section.level === 1 && (
-                <h2 className="text-2xl font-bold mb-4 pt-4">
-                  {section.title}
-                </h2>
-              )}
-              {section.level === 2 && (
-                <h3 className="text-xl font-bold mb-3 pt-2 text-solar/90">
-                  {section.title}
-                </h3>
-              )}
-              {section.level === 3 && (
-                <h4 className="text-lg font-semibold mb-2 pt-1">
-                  {section.title}
-                </h4>
-              )}
-              {renderContent(section.content)}
-            </section>
-          ))}
-        </div>
-      </article>
-    </main>
+          {/* Paper content */}
+          <div className="prose-custom">
+            {sections.map((section, i) => (
+              <section
+                key={i}
+                id={section.title
+                  .toLowerCase()
+                  .replace(/[^a-z0-9]+/g, "-")
+                  .replace(/(^-|-$)/g, "")}
+                className="mb-12"
+              >
+                {section.level === 1 && (
+                  <h2 className="text-2xl font-bold mb-4 pt-4">
+                    {section.title}
+                  </h2>
+                )}
+                {section.level === 2 && (
+                  <h3 className="text-xl font-bold mb-3 pt-2 text-solar/90">
+                    {section.title}
+                  </h3>
+                )}
+                {section.level === 3 && (
+                  <h4 className="text-lg font-semibold mb-2 pt-1">
+                    {section.title}
+                  </h4>
+                )}
+                {renderContent(section.content)}
+              </section>
+            ))}
+          </div>
+        </article>
+      </main>
     </>
   );
 }
