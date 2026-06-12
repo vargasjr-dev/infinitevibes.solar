@@ -21,7 +21,7 @@ function MissionDiagram() {
   return (
     <div className="w-full overflow-x-auto">
       <svg
-        viewBox="0 0 840 230"
+        viewBox="0 0 840 255"
         xmlns="http://www.w3.org/2000/svg"
         className="w-full max-w-3xl mx-auto min-w-[560px]"
         aria-label="Three-step mission diagram: Orbital Ring, Dyson Sphere, Relay to Earth"
@@ -330,13 +330,9 @@ export default function Home() {
               <span className="w-1.5 h-1.5 bg-solar rounded-full animate-pulse" />
               Research Phase — White Paper v1.2 Published
             </div>
-            <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-6">
+            <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-12">
               Eat The Sun
             </h1>
-            <p className="text-xl md:text-2xl text-muted max-w-2xl mx-auto mb-12 leading-relaxed">
-              Harvest as much solar energy as possible from space and beam it
-              back to Earth.
-            </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
                 href="/roadmap"
@@ -357,13 +353,9 @@ export default function Home() {
         {/* ── Three Steps ── */}
         <section className="py-20 px-6 bg-surface">
           <div className="max-w-5xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center">
-              Three major steps
+            <h2 className="text-3xl md:text-4xl font-bold mb-14 text-center">
+              The Path to Infinite Vibes
             </h2>
-            <p className="text-muted text-center max-w-2xl mx-auto mb-14">
-              Each one unlocks the next. Each one is economically viable on its
-              own.
-            </p>
 
             <MissionDiagram />
 

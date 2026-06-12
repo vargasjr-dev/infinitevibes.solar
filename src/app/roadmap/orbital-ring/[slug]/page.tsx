@@ -17,7 +17,7 @@ export async function generateMetadata({
   const step = getStepBySlug(slug);
   if (!step) return { title: "Not Found — Infinite Vibes" };
   return {
-    title: `Step ${step.step}: ${step.title} — Roadmap — Infinite Vibes`,
+    title: `Step ${step.step}: ${step.title} — Orbital Ring — Infinite Vibes`,
     description: step.description,
   };
 }
@@ -44,10 +44,10 @@ export default async function RoadmapStepPage({
           {/* Breadcrumb */}
           <div className="flex items-center gap-2 text-sm text-muted mb-6">
             <Link
-              href="/roadmap"
+              href="/roadmap/orbital-ring"
               className="hover:text-foreground transition-colors"
             >
-              Roadmap
+              Orbital Ring
             </Link>
             <span>/</span>
             <span className="text-foreground">Step {step.step}</span>
@@ -233,7 +233,7 @@ export default async function RoadmapStepPage({
           <div className="flex items-center justify-between gap-4 pt-6 border-t border-border">
             {prevStep ? (
               <Link
-                href={`/roadmap/${prevStep.slug}`}
+                href={`/roadmap/orbital-ring/${prevStep.slug}`}
                 className="group flex items-center gap-2 text-sm text-muted hover:text-foreground transition-colors"
               >
                 <svg
@@ -259,7 +259,7 @@ export default async function RoadmapStepPage({
             )}
             {nextStep ? (
               <Link
-                href={`/roadmap/${nextStep.slug}`}
+                href={`/roadmap/orbital-ring/${nextStep.slug}`}
                 className="group flex items-center gap-2 text-sm text-muted hover:text-foreground transition-colors text-right"
               >
                 <span>

@@ -97,9 +97,6 @@ export default function SubscribeForm() {
           </svg>
           Become a Patron
         </a>
-        <p className="text-muted text-xs mt-3">
-          Support the research directly. You&apos;ll see pricing at checkout.
-        </p>
       </div>
     </div>
   );
