@@ -411,6 +411,9 @@ export default function Home() {
             <div className="flex items-center gap-2 text-sm text-muted">
               <SolarIcon className="w-4 h-4 text-solar" />
               <span>Infinite Vibes — 2026</span>
+              <span className="text-xs text-muted/70">
+                · © 2026 VargasJR LLC. All rights reserved.
+              </span>
             </div>
             <div className="flex items-center gap-6 text-sm text-muted">
               <Link
